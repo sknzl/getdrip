@@ -148,7 +148,7 @@ class GetDripAPI(object):
         return response.status_code, response.json()
 
     #this part was missing for me
-    def create_or_update_order(self):
+    def create_or_update_order(self, payload):
         url = '%s/%s/orders' % (self.api_url, self.account_id)
-        response = requests.get(url, headers=self.headers, auth=self.auth)
+        response = requests.post(url, headers=self.headers, data=json.dumps(payload), auth=self.auth)
         return response.status_code, response.json()
