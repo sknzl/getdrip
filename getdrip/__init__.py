@@ -1,10 +1,3 @@
-
-'''
-Python Wrapper for getdrip https://www.getdrip.com/
-Nishant Nawarkhede
-nishant.nawarkhede@gmail.com
-'''
-
 import requests
 import json
 
@@ -92,18 +85,18 @@ class GetDripAPI(object):
         url = '%s/%s/campaigns/%s/pause' % (self.api_url, self.account_id, campaign_id)
         response = requests.post(url, headers=self.headers, auth=self.auth)
         return response.status_code
-    
+
     def remove_subscriber_from_campaign(self, id_or_email, campaign_id=None):
         url = '%s/%s/subscribers/%s/remove' % (self.api_url, self.account_id, id_or_email)
         payload = None
-        
+
         if campaign_id is not None:
             payload = {
                 'campaign_id': campaign_id
             }
-            
+
             payload = json.dumps(payload)
-        
+
         response = requests.post(url, headers=self.headers, auth=self.auth, data=payload)
         return response.status_code
 
@@ -148,3 +141,8 @@ class GetDripAPI(object):
         response = requests.post(url, headers=self.headers, data=json.dumps(payload), auth=self.auth)
         return response.status_code, response.json()
 
+    #this part was missing for me
+    def create_or_update_order(self):
+        url = '%s/%s/orders' % (self.api_url, self.account_id)
+        response = requests.get(url, headers=self.headers, auth=self.auth)
+        return response.status_code, response.json()
