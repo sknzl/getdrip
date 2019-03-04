@@ -1,3 +1,9 @@
+'''
+Python Wrapper for getdrip https://www.getdrip.com/
+Nishant Nawarkhede
+nishant.nawarkhede@gmail.com
+'''
+
 import requests
 import json
 
